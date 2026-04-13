@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratoires Vital - Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .typing-indicator span {
+            animation: blink 1.4s infinite both;
+            height: 6px; width: 6px; background: #4ade80; border-radius: 50%; display: inline-block; margin: 0 1px;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink { 0% { opacity: 0.2; } 20% { opacity: 1; } 100% { opacity: 0.2; } }
+    </style>
+</head>
+<body class="bg-green-50 font-sans text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-green-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-leaf text-3xl text-green-600"></i>
+                    <span class="text-2xl font-bold text-green-800 tracking-tight">VITAL</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">Accueil</a>
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">Nos Gamme</a>
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">Produits</a>
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">Actualité Vital</a>
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">À propos</a>
+                    <a href="#" class="text-gray-600 hover:text-green-600 font-medium transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-green-800 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-40 bg-[url('https://picsum.photos/seed/nature/1920/1080')] bg-cover bg-center"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 flex flex-col items-center text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-green-500/30 border border-green-400/50 text-green-50 text-sm font-medium mb-6 backdrop-blur-sm">Depuis 2000 en Tunisie</span>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 max-w-4xl leading-tight">Les laboratoires Vital – <br class="hidden md:block" /><span class="text-green-300">Créateurs de bien-être au naturel</span></h1>
+            <p class="text-lg md:text-xl text-green-100 max-w-2xl mb-10">Leader africain des compléments alimentaires naturels à base de plantes. Découvrez notre expertise en phytothérapie, bien-être et cosmétologie.</p>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <button id="chat-toggle" class="fixed bottom-6 right-6 p-4 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition-all z-50 flex items-center gap-2">
+        <i class="fas fa-comment-dots text-xl"></i>
+        <span class="font-medium hidden md:inline">Assistant Vital</span>
+    </button>
+
+    <div id="chat-window" class="fixed bottom-6 right-6 w-full max-w-sm bg-white rounded-2xl shadow-2xl border border-green-100 overflow-hidden z-50 flex-col h-[500px] max-h-[80vh] hidden">
+        <div class="bg-green-600 text-white p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-robot"></i>
+                <h3 class="font-medium">Assistant Vital • Laboratoires Vital</h3>
+            </div>
+            <button id="chat-close" class="text-green-100 hover:text-white transition-colors"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-green-50/50">
+            <div class="flex justify-start">
+                <div class="max-w-[85%] p-3 rounded-2xl bg-white border border-green-100 text-gray-800 rounded-bl-none shadow-sm text-sm">
+                    Bonjour ! Je suis l'Assistant Vital. Comment puis-je vous aider aujourd'hui ?
+                </div>
+            </div>
+        </div>
+        <div class="p-3 bg-white border-t border-green-100">
+            <form id="chat-form" class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="Posez votre question..." class="flex-1 px-4 py-2 bg-gray-100 border-transparent rounded-full focus:bg-white focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all outline-none text-sm" />
+                <button type="submit" class="p-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors w-10 h-10 flex items-center justify-center"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('chat-toggle');
+        const closeBtn = document.getElementById('chat-close');
+        const chatWindow = document.getElementById('chat-window');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const messagesContainer = document.getElementById('chat-messages');
+
+        toggleBtn.addEventListener('click', () => {
+            chatWindow.classList.remove('hidden');
+            chatWindow.classList.add('flex');
+            toggleBtn.classList.add('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+            chatWindow.classList.remove('flex');
+            toggleBtn.classList.remove('hidden');
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+            
+            // Add user message
+            messagesContainer.innerHTML += `
+                <div class="flex justify-end">
+                    <div class="max-w-[85%] p-3 rounded-2xl bg-blue-600 text-white rounded-br-none text-sm">
+                        ${text}
+                    </div>
+                </div>
+            `;
+            chatInput.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Add typing indicator
+            const typingId = 'typing-' + Date.now();
+            messagesContainer.innerHTML += `
+                <div id="${typingId}" class="flex justify-start">
+                    <div class="bg-white border border-green-100 text-gray-500 p-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1 items-center typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Mock response
+            setTimeout(() => {
+                document.getElementById(typingId).remove();
+                messagesContainer.innerHTML += `
+                    <div class="flex justify-start">
+                        <div class="max-w-[85%] p-3 rounded-2xl bg-white border border-green-100 text-gray-800 rounded-bl-none shadow-sm text-sm">
+                            Je suis une version prototype locale. Dans la version complète, je serais connecté à l'API Gemini pour vous renseigner sur nos produits (Tetra B, Mincicare, etc.) et notre histoire. Je ne suis pas un substitut à un avis médical. Consultez votre médecin ou pharmacien.
+                        </div>
+                    </div>
+                `;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
