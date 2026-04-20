@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+@font-face {
+	font-family: "Sergio Trendy";
+	src: local("Sergio Trendy"), url('/fonts/SergioTrendy.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Margin DEMO";
+	src: local("Margin DEMO"), local("Margin Demo"), url('/fonts/MarginDemo.ttf') format('truetype');
+	font-display: swap;
+}
+
+@keyframes chatbot-shake {
+	0%, 100% { transform: translateX(0); }
+	10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+	20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes chatbot-glow {
+	0%, 100% { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14); }
+	50% { box-shadow: 0 0 0 10px rgba(91, 74, 211, 0.16); }
+}
+
+@keyframes chatbot-bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-2px); }
+}
+
+.chatbot-shake {
+	animation: chatbot-shake 1.2s ease-in-out 0s 4, chatbot-glow 1.6s ease-in-out 0s 3;
+}
+
+.chatbot-glow {
+	position: relative;
+}
+
+.chatbot-bounce {
+	animation: chatbot-bounce 0.9s ease-in-out infinite;
+}
+
+.vitai-wordmark {
+	font-family: "Sergio Trendy", "Margin DEMO", "Trebuchet MS", "Segoe UI", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	line-height: 1;
+}
+
+.vitai-wordmark span {
+	font-weight: 500;
+	font-size: 0.88em;
+	opacity: 0.95;
+}
+
+.vitai-logo-mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 9999px;
+	background: radial-gradient(circle at 30% 30%, #8b7cf0, #5b4ad3);
+	color: #ffffff;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+}

@@ -1,36 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
+import { X, Send, Bot } from 'lucide-react';
 import Markdown from 'react-markdown';
-
-const SYSTEM_INSTRUCTION = `Tu es l'assistant virtuel officiel des Laboratoires Vital (Tunisie). Tu es spécialiste des compléments alimentaires naturels à base de plantes. Réponds toujours en français, de manière professionnelle, rassurante et utile. Base tes réponses uniquement sur les informations du site Vital. Rappelle toujours : 'Je ne suis pas un substitut à un avis médical. Consultez votre médecin ou pharmacien.'
-
-Informations sur l'entreprise:
-- Fondé en 2000 en Tunisie. Leader africain des compléments alimentaires naturels à base de plantes (phytothérapie, bien-être, cosmétologie).
-- 500 produits commercialisés en Tunisie et à l'étranger.
-- 300 millions d'unités fabriquées par an.
-- 400 employés (24% cadres).
-- 1 ordonnance sur 3 contient un produit Vital (Tunisie).
-- Certifications: ISO 9001, ISO 22000, ISO 22716, Halal.
-
-Gammes et Produits:
-- Gamme Minceur → Mincicare 4 actions, Minciligne (Coupe faim, Brûle Graisse, Draineur, Vitaminé)
-- Gamme Enfant → Apitou n°1, Pédiakids (Apigrip, Apinez, Vitamine D3, etc.)
-- Gamme Carences → Tetra B
-- Autres gammes: Articulation, Beauté et peau, Capital osseux, Circulation, Energie, Femme, Homme, Immunité, Mémoire et concentration, Métabolisme, Moral, Ongles et cheveux, Solaire, Transit Gastro intestinal, Voies urinaires.
-- Exemples de produits: Ashwagandha, Magvit, Ferbiotic, Phytothéra, etc.
-
-Historique:
-- 2000: Création
-- 2003: Premier site de production + Gelée Royale
-- 2004: Premier producteur local en phytothérapie
-- 2010-2020: Toutes les certifications ISO + Halal
-- Aujourd'hui: Export vers plusieurs pays (Algérie, Maroc, France, etc.)`;
+import VitaiAssistLogo from './VitaiAssistLogo';
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNudge, setShowNudge] = useState(true);
+  const [notificationCount, setNotificationCount] = useState(1);
   const [messages, setMessages] = useState<{role: 'user'|'model', text: string}[]>([
     { role: 'model', text: 'Bonjour ! Je suis VitAI, votre assistant virtuel. Comment puis-je vous aider aujourd\'hui ?' }
   ]);
@@ -46,6 +24,20 @@ export default function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setShowNudge(false);
+      setNotificationCount(0);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setShowNudge(false);
+    }, 6000);
+
+    return () => window.clearTimeout(timer);
+  }, [isOpen]);
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -55,31 +47,30 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("Clé API manquante");
-      }
-      const ai = new GoogleGenAI({ apiKey });
-
-      const history = messages.map(m => ({
-        role: m.role,
-        parts: [{ text: m.text }]
-      }));
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-3.1-pro-preview',
-        contents: [...history, { role: 'user', parts: [{ text: userMsg }] }],
-        config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
-          thinkingConfig: { thinkingLevel: 'HIGH' as any },
-          temperature: 0.7,
-        }
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages,
+          userMessage: userMsg,
+        })
       });
 
-      setMessages(prev => [...prev, { role: 'model', text: response.text || 'Désolé, je n\'ai pas pu formuler une réponse.' }]);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || `API Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const botResponse = data.message || 'Désolé, je n\'ai pas pu formuler une réponse.';
+      
+      setMessages(prev => [...prev, { role: 'model', text: botResponse }]);
     } catch (error) {
-      console.error(error);
-      setMessages(prev => [...prev, { role: 'model', text: 'Désolé, une erreur est survenue (ou la clé API est manquante). Veuillez réessayer plus tard.' }]);
+      console.error('Chatbot Error:', error);
+      const message = error instanceof Error ? error.message : 'Désolé, une erreur est survenue. Veuillez réessayer plus tard.';
+      setMessages(prev => [...prev, { role: 'model', text: message }]);
     } finally {
       setIsLoading(false);
     }
@@ -87,22 +78,35 @@ export default function Chatbot() {
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 p-4 bg-gray-600 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all z-50 ${isOpen ? 'hidden' : 'flex'} items-center gap-2`}
-      >
-        <MessageCircle size={24} />
-        <span className="font-medium hidden md:inline">VitAI</span>
-      </button>
+      {!isOpen && (
+        <button
+          onClick={() => {
+            setIsOpen(true);
+            setShowNudge(false);
+            setNotificationCount(0);
+          }}
+          className={`fixed bottom-6 right-6 px-3 py-2 bg-white/95 text-gray-800 rounded-full border border-emerald-400 shadow-lg hover:shadow-xl transition-all z-[9999] flex items-center gap-2 ${showNudge ? 'chatbot-shake chatbot-glow' : ''}`}
+          aria-label="Open VitAI Assist"
+        >
+          <VitaiAssistLogo className="hidden h-8 w-[132px] md:block" />
+          <span className="md:hidden vitai-logo-mark" aria-hidden="true">
+            <Bot size={16} />
+          </span>
+          {notificationCount > 0 && (
+            <span className="absolute -top-2 -right-2 min-w-5 h-5 rounded-full bg-red-500 px-1 text-[11px] leading-5 text-center font-semibold text-white shadow-md chatbot-bounce">
+              {notificationCount}
+            </span>
+          )}
+        </button>
+      )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-full max-w-sm bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 flex flex-col h-[500px] max-h-[80vh]">
-          <div className="bg-gray-600 text-white p-4 flex justify-between items-center">
+        <div className="fixed bottom-6 right-6 w-full max-w-sm bg-white rounded-2xl shadow-2xl border border-emerald-400 overflow-hidden z-[9999] flex flex-col h-[500px] max-h-[80vh]">
+          <div className="bg-emerald-500 border-b border-emerald-600 text-white p-4 flex justify-between items-center shadow-[0_1px_0_rgba(255,255,255,0.08)_inset]">
             <div className="flex items-center gap-2">
-              <Bot size={20} />
-              <h3 className="font-medium">VitAI • Laboratoires Vital</h3>
+              <VitaiAssistLogo className="h-10 w-[180px]" />
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-gray-200 hover:text-white transition-colors">
+            <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white transition-colors">
               <X size={20} />
             </button>
           </div>

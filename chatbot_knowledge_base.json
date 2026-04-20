@@ -1,0 +1,216 @@
+{
+  "company": {
+    "name": "Les Laboratoires VITAL",
+    "tagline": "Créateurs de bien-être au naturel",
+    "website": "https://vital.com.tn",
+    "established": 2000,
+    "location": "Tunisia (North Africa)",
+    "specialization": "Phytotherapy, natural supplements, wellness, and cosmetology"
+  },
+  "company_overview": {
+    "description": "Vital is a pharmaceutical laboratory founded in 2000 in Tunisia, specializing in phytotherapy, natural wellness solutions, and cosmetology.",
+    "key_claim": "Africa's leading manufacturer of natural plant-based dietary supplements",
+    "expertise": "20 years of transforming plants into effective health solutions through science, controlled sourcing, and perfect safety",
+    "mission": "Engaged commitment to healthcare professionals and patients to offer high-quality natural products"
+  },
+  "headquarters": {
+    "address": "Z.I Ben Arous – Route Mornag – Ben Arous, Tunisia",
+    "phone": "+216 71 385 339",
+    "fax": "+216 71 385 825",
+    "email": "contact@vital.com.tn"
+  },
+  "facilities": {
+    "storage": {
+      "name": "Storage Warehouse",
+      "location": "Z.I Mornag – Errisala, Tunisia",
+      "phone": "+216 71 385 339",
+      "fax": "+216 79 396 081"
+    },
+    "laboratories": {
+      "name": "Manufacturing Laboratories",
+      "location": "Avenue Bahri – Boumhel – Ben Arous, Tunisia",
+      "phone": "+216 71 386 016",
+      "fax": "+216 71 216 900"
+    }
+  },
+  "certifications_and_standards": {
+    "ISO_9001": "Quality management system for dietary supplements",
+    "ISO_22000": "Food safety management system for dietary supplements",
+    "ISO_22716": "Good manufacturing practices for cosmetic products",
+    "Halal_Certification": "For dietary supplements",
+    "quality_commitment": "Vital follows rigorous standards ensuring conformity with Tunisian norms and international laws"
+  },
+  "company_statistics": {
+    "products": 500,
+    "products_description": "Commercialized in Tunisia and internationally",
+    "annual_production": "300 million units manufactured per year",
+    "employees": 400,
+    "management_percentage": "24% are executives/management staff",
+    "market_position": "1 out of 3 prescriptions in Tunisia contains a Vital product",
+    "export_presence": "Commercialized in multiple countries including Morocco, Poland, France, Congo, Ivory Coast, and more"
+  },
+  "product_categories": [
+    {
+      "name": "Pédiakids",
+      "description": "100% natural children's products with plant extracts, vitamins, and minerals for infants and children's natural health"
+    },
+    {
+      "name": "Laboratoires Vital",
+      "description": "Dry plant extract combinations offering effective therapeutic solutions"
+    },
+    {
+      "name": "Phytothéra",
+      "description": "Wide range of 100% natural nutritional supplements addressing daily health issues naturally with plant therapeutic properties"
+    },
+    {
+      "name": "Vitonic",
+      "description": "Complete multivitamin range with minerals, plant extracts, probiotics, and prebiotics for daily vitality and wellness"
+    },
+    {
+      "name": "Omevie",
+      "description": "Supplements rich in Omega 3 and Vitamin E for immunity, emotional balance, cardiovascular prevention, and brain development"
+    },
+    {
+      "name": "Planthérapie",
+      "description": "Natural solutions for cold, wet cough, dry cough, nasal congestion, sore throat, and headaches (adults only)"
+    },
+    {
+      "name": "Mincivit",
+      "description": "Drainers and detoxifiers with natural ingredients for effective fat elimination and body reshaping"
+    },
+    {
+      "name": "Bactol",
+      "description": "Disinfectant products for protection and virus prevention"
+    },
+    {
+      "name": "Minciligne",
+      "description": "Specific weight loss range in various forms (capsules, drinkable solutions) for effective fat elimination"
+    },
+    {
+      "name": "Uniderm",
+      "description": "Dermatological soaps adapted for all skin types for daily skin hygiene"
+    },
+    {
+      "name": "Healthcare",
+      "description": "Products combining plant extracts and precious oils for weight loss and anti-aging objectives"
+    },
+    {
+      "name": "Cosmopharma",
+      "description": "Specialized skin care line addressing specific needs: hydration, treatment, protection, hygiene"
+    },
+    {
+      "name": "Oligovit",
+      "description": "Zinc, Vitamin C, Echinacea, Vitamin D3 for complete immunity reinforcement"
+    },
+    {
+      "name": "TC 2000",
+      "description": "Natural, non-irritating skin lightening care for guaranteed skin brightening"
+    },
+    {
+      "name": "FERBIOTIC",
+      "description": "Dry plant extract combinations offering effective therapeutic solutions"
+    },
+    {
+      "name": "PHYTOL",
+      "description": "Complete oral and dental care line specially designed for dental and oral health"
+    },
+    {
+      "name": "VITOSINE",
+      "description": "Drying skin solution for cleansing and drying skin"
+    },
+    {
+      "name": "CALMOSS",
+      "description": "Complete range adapted to all needs"
+    },
+    {
+      "name": "Hydra",
+      "description": "Hydration-focused product range"
+    },
+    {
+      "name": "Phytofane",
+      "description": "Hair care solutions for anti-dandruff, anti-hair loss, and hair strengthening"
+    }
+  ],
+  "product_needs_categories": [
+    "Articulation",
+    "Beauté et Peau (Beauty and Skin)",
+    "Capital osseux (Bone Health)",
+    "Carences (Deficiencies)",
+    "Circulation",
+    "Energie (Energy)",
+    "Enfants (Children)",
+    "Femme (Women)",
+    "Homme (Men)",
+    "Immunité (Immunity)",
+    "Mémoire et concentration (Memory and Concentration)",
+    "Métabolisme (Metabolism)",
+    "Minceur (Weight Loss)",
+    "Moral (Mood)",
+    "Ongles et cheveux (Nails and Hair)",
+    "Solaire (Sun Care)",
+    "Transit Gastro intestinal (Digestive Health)",
+    "Voies urinaires (Urinary Health)"
+  ],
+  "featured_products": {
+    "fersang": "Tunisia's second therapeutic alternative for iron treatment",
+    "apitou": "First therapeutic alternative for treating children's cough",
+    "supplements": "70% of Vital's dietary supplements are targeted at specific populations: babies & children, pregnant/nursing women, seniors, athletes, weight loss seekers"
+  },
+  "galenic_forms": [
+    "Soft capsules",
+    "Syrups",
+    "Capsules (gélules)",
+    "Soaps",
+    "Creams",
+    "Ointments",
+    "Drinkable solutions",
+    "Shampoos",
+    "Semi-liquid forms",
+    "Sachets"
+  ],
+  "quality_assurance": {
+    "process": "Each product undergoes rigorous analysis by accredited laboratories (VERITAS) with certification reports and compliance verification",
+    "cvl": "Free Sales Certificate (CVL) obtained from competent authorities following conformity verification",
+    "international": "Vital's products are homologated in multiple countries: Morocco, Poland, France, Congo, Ivory Coast, and more",
+    "standards": "Manufacturing follows strictest standards combining science, controlled origins, and perfect safety"
+  },
+  "company_achievements": {
+    "2000": "Company founded",
+    "2003": "Creation of first capsule production site and launch of first phytotherapy supplement (Royal Jelly)",
+    "2004": "Became Tunisia's first specialized local producer of phytotherapy dietary supplements",
+    "2008": "First export to Algeria",
+    "2009": "Launch of new forms: semi-liquid, sachets, syrups, soaps",
+    "2010": "ISO 22000 certification obtained",
+    "2011": "ISO 9001 certification obtained",
+    "2015": "Factory expansion with state-of-the-art technology",
+    "2017": "Expanded to 4 countries",
+    "2019": "Halal certification obtained",
+    "2020": "ISO 22716 certification for cosmetics manufacturing & Celebrated 20 years of natural health solutions"
+  },
+  "raw_materials": {
+    "sourcing": "Carefully selected suppliers providing quality raw materials",
+    "focus": "Plant-based ingredients with standardized and well-documented properties",
+    "quality": "All ingredients are labeled, standardized, and well-documented according to recommendations"
+  },
+  "target_audience": {
+    "healthcare_professionals": "Doctors trust Vital across various specialties",
+    "training": "Pioneer in medical continuous training in phytotherapy",
+    "patients": "All age groups seeking natural health solutions",
+    "specific_groups": "Babies, children, pregnant/nursing women, seniors, athletes, people wanting to lose weight"
+  },
+  "social_media": {
+    "facebook": "https://www.facebook.com/LaboratoireVITAL/",
+    "linkedin": "https://www.linkedin.com/company/11695549/",
+    "youtube": "https://www.youtube.com/channel/UCYgIVDzy8xsFA4p6tz8wlbQ",
+    "instagram": "https://www.instagram.com/laboratoiresvital/"
+  },
+  "key_messages_for_chatbot": {
+    "company_identity": "We are Tunisia's leading pharmaceutical laboratory specializing in natural phytotherapy solutions with 20 years of expertise",
+    "product_philosophy": "We transform plants into effective health solutions using science, controlled sourcing, and perfect safety standards",
+    "quality_promise": "Every product meets international certifications (ISO 9001, ISO 22000, ISO 22716) and Halal standards",
+    "market_trust": "1 out of 3 prescriptions in Tunisia contains a Vital product, showing doctors and patients trust our solutions",
+    "natural_approach": "All our supplements are 100% natural without harmful side effects, suitable for all age groups",
+    "availability": "Over 500 products available for various health needs, commercialized in Tunisia and internationally",
+    "innovation": "Continuous development of new pharmaceutical forms (capsules, syrups, creams, soaps) to meet diverse patient needs"
+  }
+}

@@ -13,12 +13,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="fr">
       <body suppressHydrationWarning className="min-h-screen bg-white font-sans text-gray-800 selection:bg-green-200 flex flex-col">
+        <Chatbot />
         <Header />
         <main className="flex-grow">
           {children}
         </main>
         <Footer />
-        <Chatbot />
       </body>
     </html>
   );
